@@ -2,8 +2,8 @@
   "definitionVersion" : "1.0.0",
   "name" : "[utility] [clear datastore] Clear Datastore",
   "type" : "Pipe",
-  "panX" : 137.0,
-  "panY" : 45.0,
+  "panX" : -16.0,
+  "panY" : 58.0,
   "logLevel" : "WARN",
   "description" : "Delete all of the content indexed in the datastore at a given name.",
   "jobList" : [ {
@@ -48,7 +48,7 @@
       "appCatalogItemParameter" : {
         "paramName" : "organization_name"
       },
-      "value" : ""
+      "value" : "Research Labs"
     }, {
       "appCatalogItemParameter" : {
         "paramName" : "type_name"
@@ -140,8 +140,8 @@
       },
       "value" : "#App:21499:entries!StringArray"
     } ],
-    "locationLeft" : 840.0,
-    "locationTop" : 130.0,
+    "locationLeft" : 620.0,
+    "locationTop" : 270.0,
     "playbookRetryEnabled" : false
   }, {
     "id" : 21547,
@@ -171,6 +171,81 @@
     "locationTop" : 30.0,
     "outputVariables" : "[{\"name\":\"triggerToClearEntry\",\"type\":\"String\"}]",
     "playbookRetryEnabled" : false
+  }, {
+    "id" : 21563,
+    "appCatalogItem" : {
+      "programName" : "If / Else",
+      "displayName" : "If / Else",
+      "programVersion" : "1.0.0"
+    },
+    "name" : "If / Else 1",
+    "scheduleType" : "Daily",
+    "scheduleLOM" : false,
+    "notifyOnFailure" : true,
+    "notifyOnPartialFailure" : false,
+    "notifyOnComplete" : false,
+    "notifyIncludeLogFiles" : false,
+    "enableNotifications" : false,
+    "publishAuth" : false,
+    "publishUsername" : "mtsQWa2WGNkY7xP4",
+    "publishPassword" : "typj8kL27rqBS0m9",
+    "jobParameterList" : [ {
+      "appCatalogItemParameter" : {
+        "paramName" : "operator"
+      },
+      "value" : "greater than"
+    }, {
+      "appCatalogItemParameter" : {
+        "paramName" : "match_case"
+      },
+      "value" : "false"
+    }, {
+      "appCatalogItemParameter" : {
+        "paramName" : "as_numeric"
+      },
+      "value" : "true"
+    }, {
+      "appCatalogItemParameter" : {
+        "paramName" : "operand_1"
+      },
+      "value" : "#App:21564:array.length!String"
+    }, {
+      "appCatalogItemParameter" : {
+        "paramName" : "operand_2"
+      },
+      "value" : "0"
+    } ],
+    "locationLeft" : 450.0,
+    "locationTop" : 280.0,
+    "playbookRetryEnabled" : false
+  }, {
+    "id" : 21564,
+    "appCatalogItem" : {
+      "programName" : "TCPB - GetArrayLength v1.0",
+      "displayName" : "Get Array Length",
+      "programVersion" : "1.0.5"
+    },
+    "name" : "Get Array Length 1",
+    "scheduleType" : "Daily",
+    "scheduleLOM" : false,
+    "notifyOnFailure" : true,
+    "notifyOnPartialFailure" : false,
+    "notifyOnComplete" : false,
+    "notifyIncludeLogFiles" : false,
+    "enableNotifications" : false,
+    "publishAuth" : false,
+    "publishUsername" : "KsQ0ZOE5KALdOfX2",
+    "publishPassword" : "WkNtyrmUTxiUBxXg",
+    "jobParameterList" : [ {
+      "appCatalogItemParameter" : {
+        "paramName" : "input"
+      },
+      "value" : "#App:21499:entries!StringArray"
+    } ],
+    "locationLeft" : 850.0,
+    "locationTop" : 130.0,
+    "outputVariables" : "[{\"name\":\"array.length\",\"type\":\"String\"}]",
+    "playbookRetryEnabled" : false
   } ],
   "playbookConnectionList" : [ {
     "type" : "Pass",
@@ -190,8 +265,18 @@
   }, {
     "type" : "Pass",
     "isCircularOnTarget" : false,
-    "sourceJobId" : 21499,
+    "sourceJobId" : 21563,
     "targetJobId" : 21545
+  }, {
+    "type" : "Pass",
+    "isCircularOnTarget" : false,
+    "sourceJobId" : 21499,
+    "targetJobId" : 21564
+  }, {
+    "type" : "Pass",
+    "isCircularOnTarget" : false,
+    "sourceJobId" : 21564,
+    "targetJobId" : 21563
   } ],
   "playbookTriggerList" : [ {
     "id" : 2081,
@@ -293,7 +378,7 @@
       "pipeInputParams" : "[{\"label\":\"Array (as a string)\",\"dataType\":\"String\",\"playbookDataType\":\"String\",\"required\":true,\"name\":\"array\",\"encrypted\":false,\"hidden\":false,\"hasDollarVariables\":false,\"playbookVariable\":false,\"validValuesList\":[\"${TEXT}\"]}]",
       "pipeOutputParams" : "[{\"key\":\"escapedArray\",\"value\":\"#App:19923:find_replace.output!String \",\"displayValue\":\"#App:19923:find_replace.output!String \"}]"
     } ],
-    "dateExported" : "7/25/18 9:23 PM"
+    "dateExported" : "7/26/18 9:33 PM"
   }, {
     "definitionVersion" : "713468b7cd7d3f0ccdfe145cac1e2588",
     "name" : "[Iterator] [Internal] Check Lock and Delay",
@@ -384,7 +469,7 @@
         "appCatalogItemParameter" : {
           "paramName" : "organization_name"
         },
-        "value" : ""
+        "value" : "Research Labs"
       }, {
         "appCatalogItemParameter" : {
           "paramName" : "path"
@@ -589,7 +674,7 @@
       "pipeInputParams" : "[{\"label\":\"Datastore ID\",\"dataType\":\"String\",\"playbookDataType\":\"String\",\"required\":true,\"name\":\"datastoreID\",\"encrypted\":false,\"hidden\":false,\"hasDollarVariables\":false,\"playbookVariable\":false,\"validValuesList\":[\"${TEXT}\"]}]",
       "pipeOutputParams" : "[]"
     } ],
-    "dateExported" : "7/25/18 9:23 PM"
+    "dateExported" : "7/26/18 9:33 PM"
   }, {
     "definitionVersion" : "9bd5bf4af9cb936d29e43f245927be1e",
     "name" : "[utility] [iterator] Initialize",
@@ -645,7 +730,7 @@
         "appCatalogItemParameter" : {
           "paramName" : "organization_name"
         },
-        "value" : ""
+        "value" : "Research Labs"
       } ],
       "locationLeft" : 470.0,
       "locationTop" : -40.0,
@@ -874,7 +959,7 @@
         "appCatalogItemParameter" : {
           "paramName" : "organization_name"
         },
-        "value" : ""
+        "value" : "Research Labs"
       }, {
         "appCatalogItemParameter" : {
           "paramName" : "domain_type"
@@ -1591,7 +1676,7 @@
       "pipeInputParams" : "[{\"label\":\"Action PlayBook Link\",\"dataType\":\"String\",\"playbookDataType\":\"String\",\"required\":true,\"name\":\"action_pb_link\",\"encrypted\":false,\"hidden\":false,\"hasDollarVariables\":false,\"playbookVariable\":false,\"validValuesList\":[\"${TEXT}\",\"${KEYCHAIN}\"]},{\"label\":\"Input Data\",\"dataType\":\"String\",\"playbookDataType\":\"String,StringArray\",\"required\":true,\"name\":\"input_array\",\"encrypted\":false,\"hidden\":false,\"hasDollarVariables\":false,\"playbookVariable\":false,\"validValuesList\":[\"${TEXT}\"]},{\"label\":\"Output Data\",\"dataType\":\"String\",\"playbookDataType\":\"String\",\"required\":false,\"name\":\"output_data\",\"encrypted\":false,\"hidden\":false,\"hasDollarVariables\":false,\"playbookVariable\":false,\"validValuesList\":[\"${TEXT}\"]},{\"label\":\"Extra Data\",\"dataType\":\"String\",\"playbookDataType\":\"String\",\"required\":false,\"name\":\"extra_data\",\"encrypted\":false,\"hidden\":false,\"hasDollarVariables\":false,\"playbookVariable\":false,\"validValuesList\":[\"${TEXT}\"]}]",
       "pipeOutputParams" : "[{\"key\":\"output\",\"value\":\"#App:21512:output_data!String \",\"displayValue\":\"#App:21512:output_data!String \"}]"
     } ],
-    "dateExported" : "7/25/18 9:23 PM"
+    "dateExported" : "7/26/18 9:33 PM"
   } ],
-  "dateExported" : "7/25/18 9:23 PM"
+  "dateExported" : "7/26/18 9:33 PM"
 }
